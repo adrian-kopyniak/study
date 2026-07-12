@@ -71,7 +71,8 @@
 
       while (remainingLetters > 0 && wrongGuesses < maxWrongGuesses) {
         alert(
-          answerArray.join(" ") +
+          `Guess one of the European capitals:\n` +
+            answerArray.join(" ") +
             `\nWrong guesses: ${wrongGuesses}/${maxWrongGuesses}`,
         );
 
