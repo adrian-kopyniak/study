@@ -96,7 +96,9 @@
         }
       }
 
-      alert(answerArray.join(" "));
+      if (!cancelled) {
+        alert(answerArray.join(" "));
+      }
       if (remainingLetters === 0) {
         alert("Good job! The answer was " + word);
       } else if (wrongGuesses >= maxWrongGuesses) {
