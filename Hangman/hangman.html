@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <title>"Hangman" by Kopyniak</title>
+  </head>
+
+  <body>
+    <h1>HANGMAN GAME</h1>
+    <h2>European Capitals Edition</h2>
+
+    <script>
+      const europeanCapitals = [
+        "Amsterdam",
+        "Andorra la Vella",
+        "Athens",
+        "Belgrade",
+        "Berlin",
+        "Bern",
+        "Bratislava",
+        "Brussels",
+        "Bucharest",
+        "Budapest",
+        "Chisinau",
+        "Copenhagen",
+        "Dublin",
+        "Helsinki",
+        "Kyiv",
+        "Lisbon",
+        "Ljubljana",
+        "London",
+        "Luxembourg",
+        "Madrid",
+        "Monaco",
+        "Nicosia",
+        "Oslo",
+        "Paris",
+        "Podgorica",
+        "Prague",
+        "Reykjavik",
+        "Riga",
+        "Rome",
+        "San Marino",
+        "Sarajevo",
+        "Skopje",
+        "Sofia",
+        "Stockholm",
+        "Tallinn",
+        "Tirana",
+        "Vaduz",
+        "Valletta",
+        "Vatican",
+        "Vienna",
+        "Vilnius",
+        "Warsaw",
+        "Zagreb",
+      ];
+
+      let words = europeanCapitals;
+
+      let word = words[Math.floor(Math.random() * words.length)];
+
+      let answerArray = [];
+      for (let i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+      }
+
+      let remainingLetters = word.length;
+      let wrongGuesses = 0;
+      const maxWrongGuesses = 6;
+      let cancelled = false;
+
+      while (remainingLetters > 0 && wrongGuesses < maxWrongGuesses) {
+        alert(
+          answerArray.join(" ") +
+            `\nWrong guesses: ${wrongGuesses}/${maxWrongGuesses}`,
+        );
+
+        let guess = prompt("Guess a letter, or click Cancel to stop playing.");
+        if (guess === null) {
+          cancelled = true;
+          break;
+        } else if (guess.length !== 1) {
+          alert("Please enter a single letter.");
+        } else {
+          guess = guess.toLowerCase();
+          let isCorrect = word.toLowerCase().includes(guess);
+          for (let j = 0; j < word.length; j++) {
+            if (word[j].toLowerCase() === guess && answerArray[j] === "_") {
+              answerArray[j] = word[j];
+              remainingLetters--;
+            }
+          }
+          if (!isCorrect) {
+            wrongGuesses++;
+          }
+        }
+      }
+
+      alert(answerArray.join(" "));
+      if (remainingLetters === 0) {
+        alert("Good job! The answer was " + word);
+      } else if (wrongGuesses >= maxWrongGuesses) {
+        alert("You lost! The answer was " + word);
+      } else if (cancelled) {
+        alert("Game stopped. The answer was " + word);
+      }
+    </script>
+  </body>
+</html>
