@@ -70,13 +70,12 @@
       let cancelled = false;
 
       while (remainingLetters > 0 && wrongGuesses < maxWrongGuesses) {
-        alert(
+        let guess = prompt(
           `Guess one of the European capitals:\n` +
             answerArray.join(" ") +
-            `\nWrong guesses: ${wrongGuesses}/${maxWrongGuesses}`,
+            `\nWrong guesses: ${wrongGuesses}/${maxWrongGuesses}\n\n` +
+            `Guess a letter, or click Cancel to stop playing.`,
         );
-
-        let guess = prompt("Guess a letter, or click Cancel to stop playing.");
         if (guess === null) {
           cancelled = true;
           break;
